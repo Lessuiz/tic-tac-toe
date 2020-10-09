@@ -1,5 +1,7 @@
 const boxes = document.querySelectorAll(".box")
 const header = document.querySelector(".player")
+const start = document.querySelector("#start-button")
+const reset = document.querySelector("#reset-button")
 
 const board = (() => {
   const spaces = ['', '', '', '', '', '', '', '', '']
@@ -81,6 +83,11 @@ const displayController = (() => {
     gameIsWon
   }
 })()
+
+start.addEventListener('click', () => {
+  board.addEvents()
+  start.parentElement.hidden = true
+})
 
 const boxesEvent = (x) => {
   if (x.target.textContent == '') {
