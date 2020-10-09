@@ -4,7 +4,7 @@ const start = document.querySelector("#start-button")
 const reset = document.querySelector("#reset-button")
 
 const board = (() => {
-  const spaces = ['', '', '', '', '', '', '', '', '']
+  let spaces = ['', '', '', '', '', '', '', '', '']
   let lastPlayer = "o"
   let currentPlayer = "x"
   const returnLastPlayer = () => {
@@ -32,15 +32,23 @@ const board = (() => {
   const addEvents = () => {
     boxes.forEach((box) => {
     box.addEventListener('click', boxesEvent)
-})
+    })
   }
+  const resetGame = () => {
+    spaces = ['', '', '', '', '', '', '', '', '']
+    lastPlayer = "o"
+    currentPlayer = "x"
+    addEvents()
+  }
+
   return {
     returnBoard,
     returnCurrentPlayer,
     returnLastPlayer,
     updateSpace,
     updatePlayers,
-    addEvents
+    addEvents,
+    resetGame
   }
 })()
 
@@ -87,6 +95,12 @@ const displayController = (() => {
 start.addEventListener('click', () => {
   board.addEvents()
   start.parentElement.hidden = true
+  reset.parentElement.hidden = false
+})
+
+reset.addEventListener('click', () => {
+  board.resetGame()
+  displayController.updateGame()
 })
 
 const boxesEvent = (x) => {
