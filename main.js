@@ -27,12 +27,18 @@ const board = (() => {
     spaces[index] = currentPlayer
     updatePlayers()
   }
+  const addEvents = () => {
+    boxes.forEach((box) => {
+    box.addEventListener('click', boxesEvent)
+})
+  }
   return {
     returnBoard,
     returnCurrentPlayer,
     returnLastPlayer,
     updateSpace,
-    updatePlayers
+    updatePlayers,
+    addEvents
   }
 })()
 
@@ -76,15 +82,6 @@ const displayController = (() => {
   }
 })()
 
-const Player = (symbol) => {
-  return {
-    symbol
-  }
-}
-
-const player1 = Player("x")
-const player2 = Player("o")
-
 const boxesEvent = (x) => {
   if (x.target.textContent == '') {
     let index = x.target.getAttribute('data-index')
@@ -93,6 +90,3 @@ const boxesEvent = (x) => {
   }
 }
 
-boxes.forEach((box) => {
-  box.addEventListener('click', boxesEvent)
-})
