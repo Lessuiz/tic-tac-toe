@@ -82,6 +82,8 @@ const displayController = (() => {
       boxes.forEach((box) => {
         box.removeEventListener('click', boxesEvent)
       })
+    }else if (board.returnBoard().every(value => value != '')) {
+      header.textContent = "Draw!!"
     }else {
       header.textContent = `${board.returnCurrentPlayer()[1]} turn`
     }
