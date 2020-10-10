@@ -95,6 +95,9 @@ const displayController = (() => {
 })()
 
 start.addEventListener('click', () => {
+  for (let i = 0; i < boxes.length; i++) {
+    boxes[i].textContent = ''
+  }
   board.addEvents()
   start.parentElement.hidden = true
   reset.parentElement.hidden = false
